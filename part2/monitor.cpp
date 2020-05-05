@@ -19,8 +19,8 @@ void wait(cond *cv) {
 void signal(cond *cv) {
     if (cv->count > 0) { /* Dont signal anyone if no one is waiting. */
         next_count += 1;
-        sem_post(&(cv->blocked));
-        sem_wait(&next_);
+        sem_post(&(cv->blocked)); /* Signal the blocked thread in the given cv */
+        sem_wait(&next_); /* Wait for the block thread to finish executing. Hoare Semantics */
         next_count -= 1;
     }
 }
