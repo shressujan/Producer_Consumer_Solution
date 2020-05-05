@@ -8,16 +8,16 @@ int count(cond *cv) {
 void wait(cond *cv) {
     cv->count += 1; /* Increment the blocked thread count for given cv */
     if (next_count > 0) {
-        sem_post(&next_);
+        sem_post(&next_); /* Resume a suspended thread. */
     } else {
-        sem_post(&mutex);
+        sem_post(&mutex); /* Allow a new thread in the monitor */
     }
     sem_wait(&(cv->blocked));
     cv->count -=1; /* Decrement the blocked thread count for given cv */
 }
 
 void signal(cond *cv) {
-    if (cv->count > 0) {
+    if (cv->count > 0) { /* Dont signal anyone if no one is waiting. */
         next_count += 1;
         sem_post(&(cv->blocked));
         sem_wait(&next_);
