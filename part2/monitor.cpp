@@ -12,7 +12,7 @@ void monitor_destroy_semaphores() {
 }
 
 void monitor_insert(char item, void *threadid) {
-    sem_wait(&mutex);
+    sem_wait(&mutex); /* Lock Critical section */
     /* Check if the buffer is full, if full wait */
     while ((int)buffer.size() == buffer_size) full.wait(&mutex, &next_, &next_count);
     /* Terminating condition for the loop */
@@ -29,7 +29,7 @@ void monitor_insert(char item, void *threadid) {
 }
 
 void monitor_remove(void *threadid) {
-    sem_wait(&mutex);
+    sem_wait(&mutex); /* Lock Critical section */
     /* Check if the buffer is empty, if empty wait. */
     while ((int)buffer.size() == 0) empty.wait(&mutex, &next_, &next_count);
     /* Terminating condition for the loop */

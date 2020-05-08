@@ -45,6 +45,9 @@ int buffer_size;
 int num_of_items;
 int next_count = 0;
 
+/**
+ * A function to initialize the semaphores
+ */
 extern void monitor_initialize();
 
 /**
