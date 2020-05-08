@@ -23,7 +23,7 @@
 
 
 /**
- * Declaring the required integer variables
+ * Declaring the required variables
  */
 int producer_threads_max_count;
 int consumer_threads_max_count;
@@ -96,13 +96,13 @@ void monitor_destroy_semaphores();
 /**
  * A function that inserts the input char item in the buffer vector array.
  * @param item
- * @param threadid
+ * @param *threadid
  */
 void monitor_insert(char item, void *threadid);
 
 /**
  * A function that removes the last item from the buffer vector array.
- * @param threadid
+ * @param *threadid
  */
 void monitor_remove(void *threadid);
 

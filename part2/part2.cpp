@@ -84,8 +84,7 @@ void *producer(void *threadid) {
         /* Calling the monitor_insert function to insert the character alpha */
         monitor_insert(alpha, threadid);
     }
-    /* Terminates waiting thread */
-    pthread_exit(0);
+    return 0;
 }
 
 void *consumer(void *threadid) {
@@ -94,6 +93,5 @@ void *consumer(void *threadid) {
         /* Calling the monitor_remove to remove the last item from the buffer deque */
         monitor_remove(threadid);
     }
-    /* Terminates waiting thread */
-    pthread_exit(0);
+    return 0;
 }
